@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">hello Gm
+<input type="submit" id="submit">
+<script>
+
+    let submit=document.querySelector("#submit")
+    
+    /* setTimeout(function(){
+        alert("hello")
+    },2000)
+ 
+        let txt = function() {
+            document.querySelector("#txt").value = "bye";  // Use `value` instead of `innerHTML`
+        };
+
+        setTimeout(txt, 2000);*/
+
+        let txt = function() {
+            document.querySelector("#txt")
+            console.log("bye")
+        };
+
+
+        setInterval(txt,1000)
+
+
+        </script>
+</body>
+</html>

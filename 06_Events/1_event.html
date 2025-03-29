@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //way to write event 
+    /*  document.getElementById('owl').onclick = function(){
+     alert("owl clicked")
+
+    } */
+
+   /*  document.getElementById('owl').addEventListener('click', function(e){
+        alert("clicked owl1");
+     }, false)
+
+ -------------------------------------------------------*/
+ /*bubbling- false is default attribute - no need to write.by bubbling first call goes to in inner element then outer element
+    How It Works:
+        When an event occurs on a child element, it first executes its event handler (if defined).
+        Then, the event bubbles up to the parent, grandparent, and so on until it reaches the <html> element.
+
+    document.getElementById('images').addEventListener('click', function(e){
+       console.log("clicked inside the ul");
+     }, false)
+
+     document.getElementById('owl').addEventListener('click', function(e){
+         console.log("owl clicked");
+       
+     }, false)*/
+
+/*capturing- need to write true .capturing first call parent element then child
+    How it Works:
+        The event starts from the topmost ancestor (like <html> or <body>) and moves downward to the target element.
+
+        The event is first captured by the parent elements before reaching the child element where it was triggered.
+    Which One to Use?
+        Bubbling (false) is the default and is commonly used.
+
+        Capturing (true) is rarely needed but can be useful when you want the parent element to handle the event before the child.
+
+     document.getElementById('images').addEventListener('click', function(e){
+       console.log("clicked inside the ul");
+     }, true)
+
+     document.getElementById('owl').addEventListener('click', function(e){
+         console.log("owl clicked");
+       
+     }, true)----------------------------------------------------------------------*/
+
+
+    /*document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked");
+         e.stopPropagation()   //stops event going for parent execution
+     }, false)
+    
+     document.getElementById('google').addEventListener('click',function(e){
+         e.preventDefault();        //Stops the default browser action- clicking it won't navigate to Google.     
+         e.stopPropagation()        //Prevents the event from bubbling up to parent elements.
+         console.log("google clicked");
+     }, false)---------------------------------------------*/
+   
+    //if we want to remove img after clicking on it 
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') { 
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode //also remove li 
+            removeIt.remove() 
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
+</html>
+
+/*attachEvent()
+// jQuery - on
+
+// type, timestamp, defaultPrevented
+// target, toElement, srcElement, currentTarget,
+// clientX, clientY, screenX, screenY
+// altkey, ctrlkey, shiftkey, keyCode
+
+type	Event type (click, keydown)
+timestamp	Time event occurred
+defaultPrevented	true if preventDefault() was called
+target	The exact element clicked
+toElement	Element the mouse moved to (mouseover)
+srcElement	Old version of target (IE)
+currentTarget	Element where the event listener is attached
+clientX, clientY	Mouse position in the browser window
+screenX, screenY	Mouse position on the screen
+altKey, ctrlKey, shiftKey	true if the key is pressed
+keyCode	Key’s numeric code (Deprecated)*/

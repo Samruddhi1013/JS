@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        let intervalId; // Store interval reference
+
+        document.querySelector('#start').onclick = function() {
+            if (!intervalId) { // Prevent multiple intervals
+                intervalId = setInterval(function() {
+                    console.log("Hello", Date.now());
+                }, 1000);
+            }
+        };
+
+        document.querySelector('#stop').onclick = function() {
+            clearInterval(intervalId); // Stop interval
+            intervalId = null; // Reset
+        };
+  
+
+
+/* ###==================== **Difference Between `setTimeout` and `setInterval`**===================
+1. `setTimeout(function, delay)` → Runs the function **only once** after the delay.  
+   - **Stopped using** `clearTimeout(timeoutID)`.  
+2. `setInterval(function, delay)` → Runs the function **repeatedly** at every delay interval.  
+   - **Stopped using** `clearInterval(intervalID)`.  
+
+### **When to Use `clearTimeout`?**
+- If you had used `setTimeout`, you could stop it like this:
+  ```js
+  let timeoutId = setTimeout(function() {
+      console.log("Hello");
+  }, 2000);
+
+  clearTimeout(timeoutId); // This stops the timeout before execution
+  ```
+- But `clearTimeout` **does not** work for `setInterval`.
+
+### **How to Stop `setInterval`?**
+For `setInterval`, you **must use `clearInterval(intervalID)`**:
+```js
+let intervalId = setInterval(function() {
+    console.log("Hello", Date.now());
+}, 1000);
+
+clearInterval(intervalId); // Stops the repeated execution
+```
+
+### **Conclusion:**
+❌ `clearTimeout(changeMe)` **does NOT stop** `setInterval`.  
+✅ Use `clearInterval(intervalId)` to stop `setInterval`. 🚀*/
+</script>
+</body>
+
+</html>
